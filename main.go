@@ -1,22 +1,29 @@
 package main
 
 import (
+	"log"
 	"net/http"
+	"os"
+
 	models "recipehub-api/models"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	r := gin.Default()
-
-	// Connect to database
 	models.ConnectDatabase()
 
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{"data": "Wellcome to Books Go API"})
+	server := gin.Default()
+	PORT := os.Getenv("PORT")
+
+	if PORT == "" {
+		PORT = "9000"
+		log.Printf("Defaulting to port %s", PORT)
+	}
+
+	server.GET("/", func(context *gin.Context) {
+		context.JSON(http.StatusOK, gin.H{"data": "Welcome to Recipes Hub API"})
 	})
 
-	// Run the server
-	r.Run()
+	server.Run(":" + PORT)
 }
