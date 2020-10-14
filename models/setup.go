@@ -14,7 +14,7 @@ func ConnectDatabase() {
 		panic("Failed to connect to database!")
 	}
 
-	database.AutoMigrate(&Recipes{}, &Ingredients{}, &Categories{})
+	database.AutoMigrate(&Recipes{}, &Ingredients{}, &Categories{}, &Users{})
 
 	DB = database
 }

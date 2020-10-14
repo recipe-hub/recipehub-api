@@ -2,21 +2,18 @@ package main
 
 import (
 	"net/http"
-	models "recipehub-api/models"
 
-	"github.com/gin-gonic/gin"
+	"recipehub-api/models"
+	"recipehub-api/routes"
+	"recipehub-api/utils"
 )
 
 func main() {
-	r := gin.Default()
+	utils.LoadEnv()
 
-	// Connect to database
 	models.ConnectDatabase()
+	PORT := utils.GetPort()
+	server := routes.Router()
 
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{"data": "Wellcome to Books Go API"})
-	})
-
-	// Run the server
-	r.Run()
+	http.ListenAndServe(":"+PORT, server)
 }
