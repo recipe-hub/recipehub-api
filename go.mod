@@ -7,4 +7,5 @@ require (
 	github.com/jinzhu/gorm v1.9.16
 	github.com/joaaomanooel/booksgo-api v0.0.0-20201010154803-44da4937e1ff
 	github.com/joho/godotenv v1.3.0
+	golang.org/x/crypto v0.0.0-20191205180655-e7c4368fe9dd
 )

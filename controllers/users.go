@@ -3,6 +3,7 @@ package controllers
 import (
 	"net/http"
 	"recipehub-api/models"
+	"recipehub-api/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -47,11 +48,13 @@ func CreateUser(context *gin.Context) {
 		return
 	}
 
+	passwordHash, _ := utils.HashPassword(input.Password)
+
 	user := models.Users{
 		Name:     input.Name,
 		Username: input.Username,
 		Email:    input.Email,
-		Password: input.Password,
+		Password: passwordHash,
 	}
 
 	models.DB.Create(&user)
@@ -70,6 +73,9 @@ func UpdateUser(context *gin.Context) {
 		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+
+	passwordHash, _ := utils.HashPassword(input.Password)
+	input.Password = passwordHash
 
 	models.DB.Model(&user).Updates(input)
 	context.JSON(http.StatusOK, gin.H{"data": user})
