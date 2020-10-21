@@ -11,6 +11,7 @@ func Router() *gin.Engine {
 
 	IngredientsRoutes(router)
 	CategoriesRoutes(router)
+	UsersRoutes(router)
 
 	router.GET("/", func(context *gin.Context) {
 		context.JSON(http.StatusOK, gin.H{"data": "Welcome to Recipes Hub API"})
