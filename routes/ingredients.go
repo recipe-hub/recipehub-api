@@ -14,7 +14,7 @@ func IngredientsRoutes(router *gin.Engine) *gin.Engine {
 		ingredients.GET("/", controllers.FindIngredients)
 		ingredients.GET("/:id", controllers.FindIngredientsById)
 		ingredients.POST("/", controllers.CreateIngredients)
-		ingredients.PATCH("/:id", controllers.UpdateIngredients)
+		ingredients.PUT("/:id", controllers.UpdateIngredients)
 		ingredients.DELETE("/:id", controllers.DeleteIngredients)
 	}
 
