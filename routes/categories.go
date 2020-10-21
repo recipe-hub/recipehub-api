@@ -9,13 +9,13 @@ import (
 func CategoriesRoutes(router *gin.Engine) *gin.Engine {
 
 	v1 := router.Group("/v1")
-	ingredients := v1.Group("/categories")
+	categories := v1.Group("/categories")
 	{
-		ingredients.GET("/", controllers.FindCategories)
-		ingredients.GET("/:id", controllers.FindCategoriesById)
-		ingredients.POST("/", controllers.CreateCategories)
-		ingredients.PUT("/:id", controllers.UpdateCategories)
-		ingredients.DELETE("/:id", controllers.DeleteCategories)
+		categories.GET("/", controllers.FindCategories)
+		categories.GET("/:id", controllers.FindCategoriesById)
+		categories.POST("/", controllers.CreateCategories)
+		categories.PUT("/:id", controllers.UpdateCategories)
+		categories.DELETE("/:id", controllers.DeleteCategories)
 	}
 
 	return router
