@@ -15,10 +15,10 @@ type CreateUsersInput struct {
 }
 
 type UpdateUsersInput struct {
-	Name     string `json:"name" binding:"required"`
+	Name     string `json:"name"`
 	Username string `json:"username"`
-	Email    string `json:"email" binding:"required"`
-	Password string `json:"password" binding:"required"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
 }
 
 func FindUsers(context *gin.Context) {
